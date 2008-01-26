@@ -24,3 +24,13 @@ class String
   end
 
 end
+
+class Fixnum
+  def even?
+    self % 2 == 0    
+  end
+
+  def odd?
+    self % 2 == 1    
+  end
+end
