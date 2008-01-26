@@ -8,6 +8,10 @@ class Piece
     @square = square
   end
 
+  def self.new_by_coordinates(x,y)
+    new(Square.new(x,y))
+  end
+
   def x
     @square.x
   end
