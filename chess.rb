@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'highline'
+
 require 'models/square.rb'
 require 'models/piece.rb'
 require 'models/board.rb'
