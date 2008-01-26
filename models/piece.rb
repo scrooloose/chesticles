@@ -4,12 +4,13 @@ class Piece
 
   attr_reader :square
 
-  def initialize(square)
+  def initialize(square, player)
     @square = square
+    @player = player
   end
 
-  def self.new_by_coordinates(x,y)
-    new(Square.new(x,y))
+  def self.new_by_coordinates(x, y, player)
+    new(Square.new(x,y), player)
   end
 
   def x
