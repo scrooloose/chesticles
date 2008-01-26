@@ -9,7 +9,7 @@ class Piece
     @player = player
   end
 
-  def self.new_by_coordinates(x, y, player)
+  def self.new_by_xy(x, y, player)
     new(Square.new(x,y), player)
   end
 
