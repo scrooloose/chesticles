@@ -3,6 +3,8 @@
 require 'rubygems'
 require 'highline'
 
+require 'lib/hacks.rb'
+
 require 'models/square.rb'
 require 'models/piece.rb'
 require 'models/board.rb'
