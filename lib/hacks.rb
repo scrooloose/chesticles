@@ -25,7 +25,7 @@ class String
 
 end
 
-class Fixnum
+class Numeric
   def even?
     self % 2 == 0    
   end
