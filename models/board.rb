@@ -45,4 +45,9 @@ class Board
     @pieces.find {|p| p.square == square}
   end
 
+  def empty?(square)
+    piece_for(square).nil?
+  end
+
+
 end
