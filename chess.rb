@@ -15,3 +15,6 @@ require 'models/rook.rb'
 require 'models/knight.rb'
 require 'models/queen.rb'
 require 'models/king.rb'
+require 'models/bishop.rb'
+
+require 'views/board_renderer.rb'
