@@ -26,4 +26,9 @@ class Square
     x.even? == y.even?
   end
 
+  def ==(s)
+    x == s.x && y == s.y
+  end
+
+
 end
