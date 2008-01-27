@@ -11,4 +11,13 @@ class Player
     raise(InvalidColorError, "Invalid color #{color}") unless [:white, :black].include?(color)
     @color = color
   end
+
+  def black?
+    @color == :black
+  end
+
+  def white?
+    @color == :white
+  end
+
 end
