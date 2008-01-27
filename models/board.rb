@@ -41,4 +41,9 @@ class Board
     @pieces ||= []
   end
 
+  def piece_for(square)
+    @pieces.find {|p| p.square == square}
+  end
+
+
 end
