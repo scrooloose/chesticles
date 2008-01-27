@@ -30,11 +30,11 @@ class Board
     @pieces << Bishop.new_by_xy(2, 7, @white)
     @pieces << Bishop.new_by_xy(5, 7, @white)
 
-    @pieces << King.new_by_xy(3, 0, @black)
-    @pieces << King.new_by_xy(3, 7, @white)
+    @pieces << King.new_by_xy(4, 0, @black)
+    @pieces << King.new_by_xy(4, 7, @white)
 
-    @pieces << Queen.new_by_xy(4, 0, @black)
-    @pieces << Queen.new_by_xy(4, 7, @white)
+    @pieces << Queen.new_by_xy(3, 0, @black)
+    @pieces << Queen.new_by_xy(3, 7, @white)
   end
 
   def pieces
