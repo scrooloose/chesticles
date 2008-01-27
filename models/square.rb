@@ -17,4 +17,13 @@ class Square
     raise(InvalidCoordinateError, "invalid Y coord: #{y}") if y < 0 || y > 7
     @y = y
   end
+
+  def black?
+    x.even? != y.even?
+  end
+
+  def white?
+    x.even? == y.even?
+  end
+
 end
