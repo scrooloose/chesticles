@@ -2,7 +2,7 @@ class Piece
   class NotImplementedError < StandardError; end
 
 
-  attr_reader :square
+  attr_reader :square, :player
 
   def initialize(square, player)
     @square = square
