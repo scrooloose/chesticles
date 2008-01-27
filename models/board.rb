@@ -30,8 +30,8 @@ class Board
     @pieces << Bishop.new_by_xy(2, 7, @black)
     @pieces << Bishop.new_by_xy(5, 7, @black)
 
-    @pieces << King.new_by_xy(5, 0, @white)
-    @pieces << King.new_by_xy(5, 7, @black)
+    @pieces << King.new_by_xy(3, 0, @white)
+    @pieces << King.new_by_xy(3, 7, @black)
 
     @pieces << Queen.new_by_xy(4, 0, @white)
     @pieces << Queen.new_by_xy(4, 7, @black)
@@ -44,6 +44,5 @@ class Board
   def piece_for(square)
     @pieces.find {|p| p.square == square}
   end
-
 
 end
