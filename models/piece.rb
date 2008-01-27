@@ -1,5 +1,6 @@
 class Piece
   class NotImplementedError < StandardError; end
+  class IllegalMoveError < StandardError; end
 
 
   attr_reader :square, :player
