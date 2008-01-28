@@ -36,7 +36,7 @@ class Piece
     raise(NotImplementedError, "move_to not implemented for #{self.class.name}")
   end
 
-  def legal_move?(square)
+  def legal?(move)
     raise(NotImplementedError, "legal_move? not implemented for #{self.class.name}")
   end
 
