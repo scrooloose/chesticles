@@ -1,5 +1,5 @@
 class Board
-  attr_reader :pieces
+  attr_reader :pieces, :white, :black
 
   def initialize(white, black)
     @white = white
