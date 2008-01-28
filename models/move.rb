@@ -10,8 +10,13 @@ class Move
   end
 
   def to_occupied_square?
-    !board.piece_for(square).nil?
+    !to_empty_square?
   end
+
+  def to_empty_square?
+    board.piece_for(square).nil?
+  end
+
 
   def horizontal?
     dy_for_player == 0 && dx_for_player != 0
