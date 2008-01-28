@@ -22,7 +22,7 @@ class Move
   end
 
   def diagonal?
-    dy_for_player == dx_for_player
+    dy_for_player.abs == dx_for_player.abs
   end
 
   def forward?
