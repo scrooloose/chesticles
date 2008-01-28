@@ -1,5 +1,7 @@
 class Move
   class InvalidDestinationSquareError < StandardError; end
+  class InvalidOperationError < StandardError; end
+
   attr_reader :piece, :square
 
   def initialize(piece, square)
@@ -69,6 +71,51 @@ class Move
   def start_square
     piece.square
   end
+
+  def squares_between
+    unless horizontal? || vertical? || diagonal?
+      raise(InvalidOperationError, "can only find squares between for straight moves")
+    end
+
+    if horizontal?
+      return (min_x..max_x).map {|x| Square.new(x, square.y)}
+    elsif vertical?
+      return (min_y..max_y).map {|y| Square.new(square.x, y)}
+    elsif diagonal?
+      xdiff = square.x - start_square.x 
+
+      #there are no between squares 
+      return [] if xdiff == 1
+
+      xstep = xdiff / xdiff.abs
+      startx = start_square.x + xstep
+      endx = square.x - xstep
+
+      return (startx..endx).map do |x| 
+        y = start_square.y + x - start_square.x
+        Square.new(x,y)
+      end
+       
+    end
+  end
+
+  def min_x
+    square.x < start_square.x ? square.x : start_square.x
+  end
+
+  def max_x
+    square.x > start_square.x ? square.x : start_square.x
+  end
+
+  def min_y
+    square.y < start_square.y ? square.y : start_square.y
+  end
+
+  def max_y
+    square.y > start_square.y ? square.y : start_square.y
+  end
+
+
 
   private
     def player
