@@ -22,6 +22,16 @@ class Piece
     @square.y
   end
 
+  def black?
+    player.black?
+  end
+
+  def white?
+    player.white?
+  end
+
+
+
   def move_to(square)
     raise(NotImplementedError, "move_to not implemented for #{self.class.name}")
   end
