@@ -32,21 +32,36 @@ class Move
     dy_for_player.abs == dx_for_player.abs
   end
 
-  def forward?
-    dy_for_player > 0
+  def direction?(heading, dist = nil)
+
+    dx = dx_for_player
+    dy = dy_for_player
+
+    case heading
+    when :left
+      return false unless(dx < 0 && horizontal?)
+    when :right
+      return false unless(dx > 0 && horizontal?)
+    when :forward
+      return false unless(dy > 0 && vertical?)
+    when :back
+      return false unless(dx < 0 && vertical?)
+    when :back_left
+      return false unless(dx < 0 && dy < 0 && diagonal?)
+    when :back_right
+      return false unless(dx < 0 && dy < 0 && diagonal?)
+    when :forward_left
+      return false unless(dx < 0 && dy > 0 && diagonal?)
+    when :forward_right
+      puts dx, dy, diagonal?
+      return false unless(dx > 0 && dy > 0 && diagonal?)
+    end
+
+    return false if !dist.nil? && distance != dist
+    true
   end
 
-  def backward?
-    dy_for_player < 0
-  end
 
-  def left?
-    dx_for_player < 0
-  end
-
-  def right?
-    dx_for_player > 0
-  end
 
   def dy_for_player
     @ydelta ||= begin
@@ -65,7 +80,15 @@ class Move
   end
 
   def distance
-    @distance ||= piece.square.distance_to(square)
+    @distance ||= if vertical?
+      dy_for_player.abs
+    elsif horizontal?
+      dx_for_player.abs
+    elsif diagonal?
+      dx_for_player.abs
+    else
+      raise(InvalidOperationError, "Cannot compute distance for a non-straight move")
+    end
   end
 
   def start_square
