@@ -30,10 +30,6 @@ class Square
     x == s.x && y == s.y
   end
 
-  def distance_to(s)
-    ((s.x - x)**2 + (s.y - y)**2)**0.5
-  end
-
   def x_delta_to(s)
     s.x - x
   end
