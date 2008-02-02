@@ -31,10 +31,19 @@ class Piece
     player.white?
   end
 
-
+  def move_for(square)
+    Move.new(self, square)
+  end
 
   def move_to(square)
-    raise(NotImplementedError, "move_to not implemented for #{self.class.name}")
+    move_for(square).execute
+  end
+
+
+  def move(move)
+    raise(IllegalMoveError, "illegal move from #{square} -> #{move.square}") unless legal?(move)
+    board.piece_captured(board.piece_for(move.square))
+    @square = move.square
   end
 
   def legal?(move)
