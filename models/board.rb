@@ -49,5 +49,10 @@ class Board
     piece_for(square).nil?
   end
 
+  def piece_captured(piece)
+    pieces.delete(piece)
+  end
+
+
 
 end
