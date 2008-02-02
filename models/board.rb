@@ -11,30 +11,30 @@ class Board
     pieces.clear
 
     0.upto(7) do |x|
-      @pieces << Pawn.new_by_xy(x, 1, @black)
-      @pieces << Pawn.new_by_xy(x, 6, @white)
+      @pieces << Pawn.new_by_xy(x, 1, @black, self)
+      @pieces << Pawn.new_by_xy(x, 6, @white, self)
     end
 
-    @pieces << Rook.new_by_xy(0, 0, @black)
-    @pieces << Rook.new_by_xy(7, 0, @black)
-    @pieces << Rook.new_by_xy(0, 7, @white)
-    @pieces << Rook.new_by_xy(7, 7, @white)
+    @pieces << Rook.new_by_xy(0, 0, @black, self)
+    @pieces << Rook.new_by_xy(7, 0, @black, self)
+    @pieces << Rook.new_by_xy(0, 7, @white, self)
+    @pieces << Rook.new_by_xy(7, 7, @white, self)
     
-    @pieces << Knight.new_by_xy(1, 0, @black)
-    @pieces << Knight.new_by_xy(6, 0, @black)
-    @pieces << Knight.new_by_xy(1, 7, @white)
-    @pieces << Knight.new_by_xy(6, 7, @white)
+    @pieces << Knight.new_by_xy(1, 0, @black, self)
+    @pieces << Knight.new_by_xy(6, 0, @black, self)
+    @pieces << Knight.new_by_xy(1, 7, @white, self)
+    @pieces << Knight.new_by_xy(6, 7, @white, self)
 
-    @pieces << Bishop.new_by_xy(2, 0, @black)
-    @pieces << Bishop.new_by_xy(5, 0, @black)
-    @pieces << Bishop.new_by_xy(2, 7, @white)
-    @pieces << Bishop.new_by_xy(5, 7, @white)
+    @pieces << Bishop.new_by_xy(2, 0, @black, self)
+    @pieces << Bishop.new_by_xy(5, 0, @black, self)
+    @pieces << Bishop.new_by_xy(2, 7, @white, self)
+    @pieces << Bishop.new_by_xy(5, 7, @white, self)
 
-    @pieces << King.new_by_xy(4, 0, @black)
-    @pieces << King.new_by_xy(4, 7, @white)
+    @pieces << King.new_by_xy(4, 0, @black, self)
+    @pieces << King.new_by_xy(4, 7, @white, self)
 
-    @pieces << Queen.new_by_xy(3, 0, @black)
-    @pieces << Queen.new_by_xy(3, 7, @white)
+    @pieces << Queen.new_by_xy(3, 0, @black, self)
+    @pieces << Queen.new_by_xy(3, 7, @white, self)
   end
 
   def pieces

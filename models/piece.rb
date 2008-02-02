@@ -3,15 +3,16 @@ class Piece
   class IllegalMoveError < StandardError; end
 
 
-  attr_reader :square, :player
+  attr_reader :square, :player, :board
 
-  def initialize(square, player)
+  def initialize(square, player, board)
     @square = square
     @player = player
+    @board = board
   end
 
-  def self.new_by_xy(x, y, player)
-    new(Square.new(x,y), player)
+  def self.new_by_xy(x, y, player, board)
+    new(Square.new(x,y), player, board)
   end
 
   def x
