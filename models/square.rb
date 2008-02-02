@@ -38,4 +38,9 @@ class Square
     s.y - y
   end
 
+  def to_s
+    "(#{x}, #{y})"
+  end
+
+
 end
