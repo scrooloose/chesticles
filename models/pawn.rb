@@ -15,7 +15,7 @@ class Pawn < Piece
     end
 
     #check if we are taking a piece 
-    [:forward_left, :forward_right].include?(move.direction) && move.to_occupied_square?
+    [:forward_left, :forward_right].include?(move.direction) && move.to_enemy_occupied_square?
   end
 
   def threatening?(square)

@@ -15,6 +15,11 @@ class Move
     !to_empty_square?
   end
 
+  def to_enemy_occupied_square?
+    p = board.piece_for(square)
+    p && p.player != player
+  end
+
   def to_empty_square?
     board.piece_for(square).nil?
   end
