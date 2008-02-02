@@ -102,19 +102,24 @@ class Move
       return ((min_y+1)..(max_y-1)).map {|y| Square.new(square.x, y)}
     elsif diagonal?
       xdiff = square.x - start_square.x 
+      ydiff = square.y - start_square.y 
 
       #there are no between squares 
       return [] if xdiff == 1
 
       xstep = xdiff / xdiff.abs
-      startx = start_square.x + xstep
-      endx = square.x - xstep
+      ystep = ydiff / ydiff.abs
 
-      return (startx..endx).map do |x| 
-        y = start_square.y + x - start_square.x
-        Square.new(x,y)
+      squares = []
+      x = start_square.x + xstep
+      y = start_square.y + ystep
+      while x != square.x && y != square.y
+        squares << Square.new(x, y)
+        x += xstep
+        y += ystep
       end
-       
+
+      return squares
     end
   end
 
