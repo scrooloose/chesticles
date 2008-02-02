@@ -92,14 +92,14 @@ class Move
   end
 
   def squares_between
-    unless horizontal? || vertical? || diagonal?
+    unless straight?
       raise(InvalidOperationError, "can only find squares between for straight moves")
     end
 
     if horizontal?
-      return (min_x..max_x).map {|x| Square.new(x, square.y)}
+      return ((min_x+1)..(max_x-1)).map {|x| Square.new(x, square.y)}
     elsif vertical?
-      return (min_y..max_y).map {|y| Square.new(square.x, y)}
+      return ((min_y+1)..(max_y-1)).map {|y| Square.new(square.x, y)}
     elsif diagonal?
       xdiff = square.x - start_square.x 
 
@@ -115,6 +115,13 @@ class Move
         Square.new(x,y)
       end
        
+    end
+  end
+
+  def clear_path?
+    raise(InvalidOperationError, "move must be straight") unless straight?
+    squares_between.all? do |s| 
+      board.piece_for(s).nil?
     end
   end
 
