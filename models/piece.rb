@@ -50,6 +50,11 @@ class Piece
     raise(NotImplementedError, "legal_move? not implemented for #{self.class.name}")
   end
 
+  def threatening?(square)
+    legal?(move_for(square))
+  end
+
+
   def to_s
     "#{self.class.name}: #{player.color}, #{square}"
   end
