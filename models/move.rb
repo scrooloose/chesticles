@@ -141,6 +141,11 @@ class Move
     square.y > start_square.y ? square.y : start_square.y
   end
 
+  def execute
+    piece.move(self)
+  end
+
+
 
 
   private
