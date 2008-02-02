@@ -9,6 +9,7 @@ class Move
     @square = square
 
     raise(InvalidDestinationSquareError, "Cant move to same square") if square == piece.square
+    raise(InvalidDestinationSquareError, "Cant capture your own pieces") if trying_to_capture_own_piece?
   end
 
   def to_occupied_square?
@@ -164,8 +165,10 @@ class Move
     piece.move(self)
   end
 
-
-
+  def trying_to_capture_own_piece?
+    p = board.piece_for(square)
+    p && p.player == player
+  end
 
   private
     def player
