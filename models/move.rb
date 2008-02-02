@@ -32,33 +32,29 @@ class Move
     dy_for_player.abs == dx_for_player.abs
   end
 
-  def direction?(heading, dist = nil)
+  def straight?
+    horizontal? || vertical? || diagonal?
+  end
 
+
+  def direction?(heading, dist = nil)
+    return false if direction != heading
+    return false if dist && distance != dist
+    true
+  end
+
+  def direction
     dx = dx_for_player
     dy = dy_for_player
 
-    case heading
-    when :left
-      return false unless(dx < 0 && horizontal?)
-    when :right
-      return false unless(dx > 0 && horizontal?)
-    when :forward
-      return false unless(dy > 0 && vertical?)
-    when :back
-      return false unless(dx < 0 && vertical?)
-    when :back_left
-      return false unless(dx < 0 && dy < 0 && diagonal?)
-    when :back_right
-      return false unless(dx < 0 && dy < 0 && diagonal?)
-    when :forward_left
-      return false unless(dx < 0 && dy > 0 && diagonal?)
-    when :forward_right
-      puts dx, dy, diagonal?
-      return false unless(dx > 0 && dy > 0 && diagonal?)
-    end
-
-    return false if !dist.nil? && distance != dist
-    true
+    return :left if(dx < 0 && horizontal?)
+    return :right if(dx > 0 && horizontal?)
+    return :forward if(dy > 0 && vertical?)
+    return :back if(dx < 0 && vertical?)
+    return :back_left if(dx < 0 && dy < 0 && diagonal?)
+    return :back_right if(dx < 0 && dy < 0 && diagonal?)
+    return :forward_left if(dx < 0 && dy > 0 && diagonal?)
+    return :forward_right if(dx > 0 && dy > 0 && diagonal?)
   end
 
 
