@@ -60,7 +60,7 @@ class Move
 
 
   def dy_for_player
-    @ydelta ||= begin
+    @dy_for_player ||= begin
       ydelta = start_square.y_delta_to(square)
       ydelta = -ydelta if player.white?
       ydelta
@@ -68,12 +68,21 @@ class Move
   end
 
   def dx_for_player
-    @xdelta ||= begin
+    @dx_for_player ||= begin
       xdelta = start_square.x_delta_to(square)
       xdelta = -xdelta if player.black?
       xdelta
     end
   end
+
+  def dx
+    @dx ||= start_square.x_delta_to(square)
+  end
+
+  def dy
+    @dy ||= start_square.y_delta_to(square)
+  end
+
 
   def distance
     @distance ||= if vertical?
