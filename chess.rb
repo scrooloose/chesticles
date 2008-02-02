@@ -19,3 +19,14 @@ require 'models/king.rb'
 require 'models/bishop.rb'
 
 require 'views/board_renderer.rb'
+
+#@white = Player.new(:white)
+#@black = Player.new(:black)
+#@board = Board.new(@white, @black)
+#@br = BoardRenderer.new(@board)
+
+white = Player.new(:white)
+black = Player.new(:black)
+board = Board.new(white, black)
+br = BoardRenderer.new(board)
+br.main_loop
