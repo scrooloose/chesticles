@@ -38,6 +38,8 @@ class Piece
 
   def threatening?(square)
     legal?(move_for(square))
+  rescue Move::InvalidDestinationSquareError
+    false
   end
 
 
