@@ -1,32 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'highline'
+require 'requires'
 
-require 'lib/hacks.rb'
-
-require 'models/square.rb'
-require 'models/piece.rb'
-require 'models/board.rb'
-require 'models/player.rb'
-require 'models/move.rb'
-
-require 'models/pawn.rb'
-require 'models/rook.rb'
-require 'models/knight.rb'
-require 'models/queen.rb'
-require 'models/king.rb'
-require 'models/bishop.rb'
-
-require 'views/board_renderer.rb'
-
-#@white = Player.new(:white)
-#@black = Player.new(:black)
-#@board = Board.new(@white, @black)
-#@br = BoardRenderer.new(@board)
-
-white = Player.new(:white)
-black = Player.new(:black)
-board = Board.new(white, black)
+board = Board.new
 br = BoardRenderer.new(board)
 br.main_loop
