@@ -1,15 +1,18 @@
 class Move
-  class InvalidDestinationSquareError < StandardError; end
-  class InvalidOperationError < StandardError; end
+  class Error < StandardError; end
+  class InvalidDestinationSquareError < Error; end
+  class InvalidOperationError < Error; end
 
   attr_reader :piece, :square
 
-  def initialize(piece, square)
+  def initialize(piece, square, do_basic_checks = true)
     @piece = piece
     @square = square
 
-    raise(InvalidDestinationSquareError, "Cant move to same square") if square == piece.square
-    raise(InvalidDestinationSquareError, "Cant capture your own pieces") if trying_to_capture_own_piece?
+    if do_basic_checks
+      raise(InvalidDestinationSquareError, "Cant move to same square") if square == piece.square
+      raise(InvalidDestinationSquareError, "Cant capture your own pieces") if trying_to_capture_own_piece?
+    end
   end
 
   def to_occupied_square?
