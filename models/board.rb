@@ -1,7 +1,7 @@
 class Board
   attr_reader :pieces, :white, :black
 
-  def initialize(white, black)
+  def initialize(white = Player.white, black = Player.black)
     @white = white
     @black = black
     reset
@@ -45,6 +45,11 @@ class Board
     @pieces.find {|p| p.square == square}
   end
 
+  def pieces_for(player)
+    @pieces.select {|p| p.player == player}
+  end
+
+
   def empty?(square)
     piece_for(square).nil?
   end
@@ -53,6 +58,7 @@ class Board
     pieces.delete(piece)
   end
 
-
-
+  def threatened?(square, player)
+    !pieces_for(player).find {|p| p.threatening?(square)}.nil?
+  end
 end
