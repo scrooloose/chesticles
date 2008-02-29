@@ -5,6 +5,9 @@ class Piece
 
   attr_reader :square, :player, :board
 
+  delegate :black?, :white?, :to => :player
+  delegate :x, :y, :to => :square
+
   def initialize(square, player, board)
     @square = square
     @player = player
@@ -15,22 +18,6 @@ class Piece
     new(Square.new(x,y), player, board)
   end
 
-  def x
-    @square.x
-  end
-
-  def y
-    @square.y
-  end
-
-  def black?
-    player.black?
-  end
-
-  def white?
-    player.white?
-  end
-
   def move_for(square)
     Move.new(self, square)
   end
@@ -38,7 +25,6 @@ class Piece
   def move_to(square)
     move_for(square).execute
   end
-
 
   def move(move)
     raise(IllegalMoveError, "illegal move from #{square} -> #{move.square}") unless legal?(move)
