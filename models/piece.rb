@@ -42,10 +42,16 @@ class Piece
     false
   end
 
+  def temporarily_move_to(square, &block)
+    old_square = @square 
+    @square = square
+    to_return = block.call(self)
+    @square = old_square
+    to_return
+  end
 
   def to_s
     "#{self.class.name}: #{player.color}, #{square}"
   end
-
 
 end
