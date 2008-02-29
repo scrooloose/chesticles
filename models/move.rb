@@ -5,6 +5,8 @@ class Move
 
   attr_reader :piece, :square
 
+  delegate :board, :player, :to => :piece
+
   def initialize(piece, square, do_basic_checks = true)
     @piece = piece
     @square = square
@@ -34,7 +36,6 @@ class Move
   def to_empty_square?
     board.piece_for(square).nil?
   end
-
 
   def horizontal?
     dy_for_player == 0 && dx_for_player != 0
@@ -184,12 +185,4 @@ class Move
     square = @piece.square 
   end
 
-  private
-    def player
-      piece.player
-    end
-
-    def board
-      piece.board
-    end
 end
