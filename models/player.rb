@@ -20,4 +20,14 @@ class Player
     @color == :white
   end
 
+  def self.white
+    @white ||= new(:white)
+  end
+
+  def self.black
+    @black ||= new(:black)
+  end
+
+
+
 end
