@@ -34,3 +34,18 @@ class Numeric
     self % 2 == 1    
   end
 end
+
+class Object
+  def delegate(*methods)
+    options = methods.pop
+    if options.is_a?(Hash) && options[:to].nil?
+        raise(ArgumentError, "Must specify a target for the delegation with :to, eg delegate(:foo, :to => :bar)")
+    end
+
+    methods.each do |method| 
+      define_method(method) do
+        send(options[:to]).send(method)
+      end
+    end
+  end
+end
