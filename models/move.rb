@@ -180,6 +180,10 @@ class Move
     p && p.player == player
   end
 
+  def moving_to_same_square?
+    square = @piece.square 
+  end
+
   private
     def player
       piece.player
