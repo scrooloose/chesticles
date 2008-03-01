@@ -1,9 +1,7 @@
 class Board
-  attr_reader :pieces, :white, :black
+  attr_reader :pieces
 
-  def initialize(white = Player.white, black = Player.black)
-    @white = white
-    @black = black
+  def initialize
     reset
   end
 
@@ -11,30 +9,30 @@ class Board
     pieces.clear
 
     0.upto(7) do |x|
-      @pieces << Pawn.new_by_xy(x, 1, @black, self)
-      @pieces << Pawn.new_by_xy(x, 6, @white, self)
+      @pieces << Pawn.new_by_xy(x, 1, Player.black, self)
+      @pieces << Pawn.new_by_xy(x, 6, Player.white, self)
     end
 
-    @pieces << Rook.new_by_xy(0, 0, @black, self)
-    @pieces << Rook.new_by_xy(7, 0, @black, self)
-    @pieces << Rook.new_by_xy(0, 7, @white, self)
-    @pieces << Rook.new_by_xy(7, 7, @white, self)
+    @pieces << Rook.new_by_xy(0, 0, Player.black, self)
+    @pieces << Rook.new_by_xy(7, 0, Player.black, self)
+    @pieces << Rook.new_by_xy(0, 7, Player.white, self)
+    @pieces << Rook.new_by_xy(7, 7, Player.white, self)
     
-    @pieces << Knight.new_by_xy(1, 0, @black, self)
-    @pieces << Knight.new_by_xy(6, 0, @black, self)
-    @pieces << Knight.new_by_xy(1, 7, @white, self)
-    @pieces << Knight.new_by_xy(6, 7, @white, self)
+    @pieces << Knight.new_by_xy(1, 0, Player.black, self)
+    @pieces << Knight.new_by_xy(6, 0, Player.black, self)
+    @pieces << Knight.new_by_xy(1, 7, Player.white, self)
+    @pieces << Knight.new_by_xy(6, 7, Player.white, self)
 
-    @pieces << Bishop.new_by_xy(2, 0, @black, self)
-    @pieces << Bishop.new_by_xy(5, 0, @black, self)
-    @pieces << Bishop.new_by_xy(2, 7, @white, self)
-    @pieces << Bishop.new_by_xy(5, 7, @white, self)
+    @pieces << Bishop.new_by_xy(2, 0, Player.black, self)
+    @pieces << Bishop.new_by_xy(5, 0, Player.black, self)
+    @pieces << Bishop.new_by_xy(2, 7, Player.white, self)
+    @pieces << Bishop.new_by_xy(5, 7, Player.white, self)
 
-    @pieces << King.new_by_xy(4, 0, @black, self)
-    @pieces << King.new_by_xy(4, 7, @white, self)
+    @pieces << King.new_by_xy(4, 0, Player.black, self)
+    @pieces << King.new_by_xy(4, 7, Player.white, self)
 
-    @pieces << Queen.new_by_xy(3, 0, @black, self)
-    @pieces << Queen.new_by_xy(3, 7, @white, self)
+    @pieces << Queen.new_by_xy(3, 0, Player.black, self)
+    @pieces << Queen.new_by_xy(3, 7, Player.white, self)
   end
 
   def pieces
