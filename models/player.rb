@@ -1,33 +1,21 @@
 class Player
-  class InvalidColorError < StandardError; end
-
-  attr_reader :color
-
-  def initialize(color)
-    self.color = color
-  end
-
-  def color=(color)
-    raise(InvalidColorError, "Invalid color #{color}") unless [:white, :black].include?(color)
-    @color = color
-  end
-
   def black?
-    @color == :black
+    self == Player.black
   end
 
   def white?
-    @color == :white
+    self == Player.white
   end
 
   def self.white
-    @white ||= new(:white)
+    @white ||= new
   end
 
   def self.black
-    @black ||= new(:black)
+    @black ||= new
   end
 
-
-
+  private
+    def initialize
+    end
 end
