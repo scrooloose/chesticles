@@ -1,5 +1,6 @@
 class Bishop < Piece
-  def legal?(move)
-    move.diagonal? && move.clear_path?
-  end
+  protected
+    def legal_move?(move)
+      move.diagonal? && move.clear_path?
+    end
 end

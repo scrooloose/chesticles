@@ -33,7 +33,7 @@ class Piece
   end
 
   def legal?(move)
-    raise(NotImplementedError, "legal_move? not implemented for #{self.class.name}")
+    legal_move?(move)
   end
 
   def threatening?(square)
@@ -54,4 +54,8 @@ class Piece
     "#{self.class.name}: #{player.color}, #{square}"
   end
 
+  protected
+  def legal_move?(move)
+    raise(NotImplementedError, "legal_move? not implemented for #{self.class.name}")
+  end
 end

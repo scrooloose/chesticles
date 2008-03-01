@@ -1,8 +1,7 @@
 class King < Piece
-  def legal?(move)
-    move.straight? && move.distance == 1
-  end
-
-  
+  protected
+    def legal_move?(move)
+      move.straight? && move.distance == 1
+    end
 end
 
