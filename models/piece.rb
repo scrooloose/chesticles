@@ -30,6 +30,7 @@ class Piece
     raise(IllegalMoveError, "illegal move from #{square} -> #{move.square}") unless legal?(move)
     board.piece_captured(board.piece_for(move.square))
     @square = move.square
+    board.game.turn_complete
   end
 
   def legal?(move)

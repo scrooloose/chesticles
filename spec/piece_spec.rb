@@ -43,4 +43,12 @@ describe Piece do
     m = p.move_for(Square.new(4,2))
     p.legal?(m).should_not be
   end
+
+  it "should become the other players turn after #move is called" do
+    #grab the white kings pawn 
+    p = boards(:start).piece_for(Square.new(4,6))
+    p.move(p.move_for(Square.new(4,5)))
+
+    p.board.game.current_player.should equal(Player.black)
+  end
 end
