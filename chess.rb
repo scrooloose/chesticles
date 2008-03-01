@@ -2,6 +2,6 @@
 
 require 'requires'
 
-board = Board.new
-br = BoardRenderer.new(board)
+game = Game.new
+br = BoardRenderer.new(game.board)
 br.main_loop

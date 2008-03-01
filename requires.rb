@@ -8,6 +8,7 @@ require 'models/piece.rb'
 require 'models/board.rb'
 require 'models/player.rb'
 require 'models/move.rb'
+require 'models/game.rb'
 
 require 'models/pawn.rb'
 require 'models/rook.rb'
