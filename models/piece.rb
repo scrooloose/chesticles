@@ -33,7 +33,7 @@ class Piece
   end
 
   def legal?(move)
-    legal_move?(move)
+    legal_move?(move) if this_players_turn?
   end
 
   def threatening?(square)
