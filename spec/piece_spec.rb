@@ -1,10 +1,9 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe Piece do
-  include TestBoards
+  include BoardHelpers
   include MoveHelpers
 
-  
   it "should delegate #black? and #white? to player" do
     p = boards(:start).pieces.first
 
@@ -32,7 +31,7 @@ describe Piece do
   end
 
   it "should raise an exception in response to #legal_move?(move)" do
-    p = Piece.new(Square.new(0,0), Player.white, Board.new)
+    p = Piece.new(Square.new(0,0), Player.white, boards(:start))
     lambda {p.send(:legal_move?, test_move)}.should raise_error(Piece::NotImplementedError)
   end
 end

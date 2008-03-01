@@ -3,7 +3,7 @@ class Game
 
   def initialize
     @current_player = Player.white
-    @board = Board.new
+    @board = Board.new(self)
   end
 
   def whites_turn?

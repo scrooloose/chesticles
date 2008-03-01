@@ -1,7 +1,8 @@
 class Board
-  attr_reader :pieces
+  attr_reader :pieces, :game
 
-  def initialize
+  def initialize(game)
+    @game = game
     reset
   end
 

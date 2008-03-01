@@ -50,6 +50,11 @@ class Piece
     to_return
   end
 
+  def this_players_turn?
+    board.game.current_player == player
+  end
+
+
   def to_s
     "#{self.class.name}: #{player.color}, #{square}"
   end
