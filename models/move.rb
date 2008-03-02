@@ -20,7 +20,7 @@ class Move
   def checks_enemy?
     enemy_king = board.pieces.find {|p| p.is_a?(King) && p.player != player}
     piece.temporarily_move_to(square) do |p|
-      puts board.threatened?(enemy_king.square, player) 
+      board.threatened?(enemy_king.square, player) 
     end
   end
 
