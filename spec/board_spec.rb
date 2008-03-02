@@ -15,4 +15,17 @@ describe Board do
   it "should have a Game" do
     boards(:start).should respond_to(:game)
   end
+
+  it "should return the black king for #king_for(Player.black)" do
+    k = boards(:start).king_for(Player.black)
+    k.player.should equal(Player.black)
+    k.class.should equal(King)
+  end
+
+  it "should return the white king for #king_for(Player.white)" do
+    k = boards(:start).king_for(Player.white)
+    k.player.should equal(Player.white)
+    k.class.should equal(King)
+  end
+
 end

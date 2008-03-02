@@ -60,4 +60,9 @@ class Board
   def threatened?(square, player)
     !pieces_for(player).find {|p| p.threatening?(square)}.nil?
   end
+
+  def king_for(player)
+    pieces.find {|p| p.is_a?(King) && p.player == player}
+  end
+
 end
