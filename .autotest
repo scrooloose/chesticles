@@ -1,0 +1,6 @@
+Autotest.add_hook :initialize do |at|
+  at.add_mapping(/models\/.*rb/) do |f, _|
+    test_file = f.sub(/models\/(.*)\.rb/, 'spec/\1_spec.rb')
+    at.files_matching Regexp.new(test_file)
+  end
+end
