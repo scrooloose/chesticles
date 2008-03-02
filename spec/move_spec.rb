@@ -28,4 +28,14 @@ describe Move do
     m.checks_enemy?.should_not be
   end
 
+  it "should return true for #checks_self? if our king is threatened after the move" do
+    m = moves(:white_move_that_checks_self)
+    m.checks_self?.should be
+  end
+
+  it "should return false for #checks_self? if our king isnt threatened after the move" do
+    m = moves(:white_kings_pawn_forward)
+    m.checks_self?.should_not be
+  end
+
 end

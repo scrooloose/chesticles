@@ -24,6 +24,13 @@ class Move
     end
   end
 
+  def checks_self?
+    our_king = board.pieces.find {|p| p.is_a?(King) && p.player == player}
+    piece.temporarily_move_to(square) do |p|
+      board.threatened?(our_king.square, player.enemy) 
+    end
+  end
+
   def to_occupied_square?
     !to_empty_square?
   end
@@ -184,5 +191,4 @@ class Move
   def moving_to_same_square?
     square = @piece.square 
   end
-
 end
