@@ -17,4 +17,9 @@ describe Player do
     p = Player.white
     p.should equal(Player.white)
   end
+
+  it "should return the opposing player for #enemy" do
+    Player.black.enemy.should equal(Player.white)
+    Player.white.enemy.should equal(Player.black)
+  end
 end

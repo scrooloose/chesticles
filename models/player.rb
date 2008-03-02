@@ -15,6 +15,15 @@ class Player
     @black ||= new
   end
 
+  def enemy
+    if white?
+      Player.black
+    else
+      Player.white
+    end
+  end
+
+
   private
     def initialize
     end
