@@ -18,11 +18,14 @@ describe Move do
     
   end
 
-  it "should return true for #checks_enemy? if the piece threatens the enemy king after the move" do
+  it "should return true for #checks_enemy? if the enemy king is threatened after the move" do
     m = moves(:white_checks_black)
     m.checks_enemy?.should be
-    m.execute
-    black_king = m.board.king_for(Player.black)
-    m.piece.threatening?(black_king.square).should be
   end
+
+  it "should return false for #checks_enemy? if the enemy king isnt threatened after the move" do
+    m = moves(:white_kings_pawn_forward)
+    m.checks_enemy?.should_not be
+  end
+
 end
