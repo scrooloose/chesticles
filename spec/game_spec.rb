@@ -10,10 +10,10 @@ describe Game do
     Game.new.should respond_to(:whites_turn?, :blacks_turn?)
   end
 
-  it "should return the other player for #current_player after #turn_complete is called" do
+  it "should return the other player for #current_player after #toggle_turn is called" do
     g = Game.new
     p = g.current_player
-    g.turn_complete
+    g.toggle_turn
     g.current_player.should_not equal(p)
   end
 end

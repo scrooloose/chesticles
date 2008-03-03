@@ -31,7 +31,7 @@ class Piece
     board.piece_captured(board.piece_for(move.square))
     @square = move.square
     @moved = true
-    board.game.turn_complete
+    board.game.toggle_turn
   end
 
   def moved?

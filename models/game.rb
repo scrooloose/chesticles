@@ -14,11 +14,12 @@ class Game
     @current_player == Player.black    
   end
 
-  def turn_complete
+  def toggle_turn
     @current_player = if @current_player.black?
       Player.white
     else
       Player.black
     end
   end
+
 end
