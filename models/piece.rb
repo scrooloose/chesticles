@@ -41,6 +41,8 @@ class Piece
   def legal?(move)
     return false unless this_players_turn?
     return false if move.checks_self?
+    return false if move.moving_to_same_square?
+    return false if move.trying_to_capture_own_piece?
     legal_move?(move) 
   end
 

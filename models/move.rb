@@ -7,14 +7,9 @@ class Move
 
   delegate :board, :player, :to => :piece
 
-  def initialize(piece, square, do_basic_checks = true)
+  def initialize(piece, square)
     @piece = piece
     @square = square
-
-    if do_basic_checks
-      raise(InvalidDestinationSquareError, "Cant move to same square") if square == piece.square
-      raise(InvalidDestinationSquareError, "Cant capture your own pieces") if trying_to_capture_own_piece?
-    end
   end
 
   def checks_enemy?
@@ -189,6 +184,6 @@ class Move
   end
 
   def moving_to_same_square?
-    square = @piece.square 
+    square == @piece.square 
   end
 end

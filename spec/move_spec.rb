@@ -33,4 +33,10 @@ describe Move do
     m.checks_self?.should_not be
   end
 
+  it "should return true for #moving_to_same_square? only if the target square is the same as the pieces current square" do
+    moves(:white_kings_pawn_forward).moving_to_same_square?.should_not be
+    s = Square.new(4,6)
+    boards(:start).piece_for(s).move_for(s).moving_to_same_square?.should be
+  end
+
 end
