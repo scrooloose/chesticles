@@ -39,4 +39,35 @@ describe Move do
     boards(:start).piece_for(s).move_for(s).moving_to_same_square?.should be
   end
 
+  it "should return false for #castle? if #piece isnt a king" do
+    moves(:white_kings_pawn_forward).castle?.should_not be
+  end
+
+  it "should return false for #castle? if the king has moved" do
+    b = boards(:kings_only)
+    b.pieces << Rook.new(Square.new(0,7), Player.white, b)
+    b.pieces << pawn = Pawn.new(Square.new(4,1), Player.black, b)
+
+    #move the white king left then back then see if we can castle 
+    b.king_for(Player.white).move_for(Square.new(3,7)).execute
+    pawn.move_for(Square.new(4,2)).execute
+    b.king_for(Player.white).move_for(Square.new(4,7)).execute
+    pawn.move_for(Square.new(4,3)).execute
+    b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should_not be
+  end
+
+  it "should return false for #castle? if the king is not moving 2 squares left or right" do
+    b = boards(:kings_and_white_rooks_only)
+    b.king_for(Player.white).move_for(Square.new(1,7)).castle?.should_not be
+
+    b = boards(:kings_and_white_rooks_only)
+    b.king_for(Player.white).move_for(Square.new(5,7)).castle?.should_not be
+  end
+
+  it "should return true for #castle? if the move is a legal castle" do
+    b = boards(:kings_and_white_rooks_only)
+    b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should be
+    b.king_for(Player.white).move_for(Square.new(6,7)).castle?.should be
+  end
+
 end

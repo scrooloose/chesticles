@@ -186,4 +186,18 @@ class Move
   def moving_to_same_square?
     square == @piece.square 
   end
+
+  def castle?
+    return false unless piece.is_a?(King) && !piece.moved? && dx.abs == 2 && horizontal?
+    
+    rook_square = if direction?(:left)
+      player.white? ? Square.new(0,7) : Square.new(7,0)
+    elsif direction?(:right)
+      player.white? ? Square.new(7,7) : Square.new(0,0)
+    end
+
+    rook = board.piece_for(rook_square)
+    rook.is_a?(Rook) && !rook.moved?
+  end
+
 end
