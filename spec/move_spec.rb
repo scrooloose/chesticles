@@ -46,13 +46,12 @@ describe Move do
   it "should return false for #castle? if the king has moved" do
     b = boards(:kings_only)
     b.pieces << Rook.new(Square.new(0,7), Player.white, b)
-    b.pieces << pawn = Pawn.new(Square.new(4,1), Player.black, b)
 
     #move the white king left then back then see if we can castle 
     b.king_for(Player.white).move_for(Square.new(3,7)).execute
-    pawn.move_for(Square.new(4,2)).execute
+    b.game.toggle_turn
     b.king_for(Player.white).move_for(Square.new(4,7)).execute
-    pawn.move_for(Square.new(4,3)).execute
+    b.game.toggle_turn
     b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should_not be
   end
 
