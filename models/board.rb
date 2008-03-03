@@ -44,6 +44,11 @@ class Board
     @pieces.find {|p| p.square == square}
   end
 
+  def piece_for_xy(x,y)
+    piece_for(Square.new(x,y))
+  end
+
+
   def pieces_for(player)
     @pieces.select {|p| p.player == player}
   end

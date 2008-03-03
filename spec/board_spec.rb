@@ -28,4 +28,9 @@ describe Board do
     k.class.should equal(King)
   end
 
+  it "should return a Piece for #piece_for_xy iff there is a Piece at the given coordinates" do
+    boards(:start).piece_for_xy(4,6).should be_a_kind_of(Piece)
+    boards(:start).piece_for_xy(4,5).should_not be
+  end
+
 end
