@@ -1,11 +1,6 @@
 class Pawn < Piece
   def move(move)
     super(move)
-    @moved = true
-  end
-
-  def moved?
-    @moved 
   end
 
   def threatening?(square)

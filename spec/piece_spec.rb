@@ -51,4 +51,20 @@ describe Piece do
 
     p.board.game.current_player.should equal(Player.black)
   end
+
+  it "should return true for #moved? only after #move has successfully executed" do
+    m = moves(:white_kings_pawn_forward)
+    m.piece.moved?.should_not be
+    m.execute
+    m.piece.moved?.should be
+
+    b = boards(:start)
+    k = b.king_for(Player.white)
+    illegal_move = k.move_for(Square.new(0,0))
+    begin
+      illegal_move.execute
+    rescue Piece::IllegalMoveError
+    end
+    k.moved?.should_not be
+  end
 end
