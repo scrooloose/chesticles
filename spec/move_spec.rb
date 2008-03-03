@@ -63,6 +63,15 @@ describe Move do
     b.king_for(Player.white).move_for(Square.new(5,7)).castle?.should_not be
   end
 
+  it "should return false for #castle? if the rook has moved" do
+    b = boards(:kings_and_white_rooks_only)
+    b.piece_for(Square.new(0,7)).move_to(Square.new(1,7))
+    b.game.toggle_turn
+    b.piece_for(Square.new(1,7)).move_to(Square.new(0,7))
+    b.game.toggle_turn
+    b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should_not be
+  end
+
   it "should return true for #castle? if the move is a legal castle" do
     b = boards(:kings_and_white_rooks_only)
     b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should be
