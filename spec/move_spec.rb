@@ -48,9 +48,9 @@ describe Move do
     b.pieces << Rook.new(Square.new(0,7), Player.white, b)
 
     #move the white king left then back then see if we can castle 
-    b.king_for(Player.white).move_for(Square.new(3,7)).execute
+    b.king_for(Player.white).move_to(Square.new(3,7))
     b.game.toggle_turn
-    b.king_for(Player.white).move_for(Square.new(4,7)).execute
+    b.king_for(Player.white).move_to(Square.new(4,7))
     b.game.toggle_turn
     b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should_not be
   end
