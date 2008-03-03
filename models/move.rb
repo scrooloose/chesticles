@@ -168,6 +168,9 @@ class Move
       player.white? ? Square.new(7,7) : Square.new(0,0)
     end
 
+    #return false if there are any pieces between the king and rook 
+    return false if piece.square.squares_between(rook_square).map{|s| board.piece_for(s)}.compact.any?
+
     rook = board.piece_for(rook_square)
     rook.is_a?(Rook) && !rook.moved?
   end

@@ -72,6 +72,13 @@ describe Move do
     b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should_not be
   end
 
+  it "should return false for #castle? if trying to castle through another piece" do
+    b = boards(:kings_and_white_rooks_only)
+    b.pieces << Knight.new(Square.new(1,7), Player.white, b)
+    m = b.king_for(Player.white).move_for(Square.new(2,7))
+    m.castle?.should_not be
+  end
+
   it "should return true for #castle? if the move is a legal castle" do
     b = boards(:kings_and_white_rooks_only)
     b.king_for(Player.white).move_for(Square.new(2,7)).castle?.should be
