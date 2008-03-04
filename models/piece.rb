@@ -3,7 +3,8 @@ class Piece
   class IllegalMoveError < StandardError; end
 
 
-  attr_reader :square, :player, :board
+  attr_reader :player, :board
+  attr_accessor :square
 
   delegate :black?, :white?, :to => :player
   delegate :x, :y, :to => :square
