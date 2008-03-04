@@ -1,6 +1,5 @@
 class Move
   class Error < StandardError; end
-  class InvalidDestinationSquareError < Error; end
   class InvalidOperationError < Error; end
 
   attr_reader :piece, :square
