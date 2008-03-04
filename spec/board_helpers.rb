@@ -14,6 +14,16 @@ module BoardHelpers
       b.pieces << king = King.new(Square.new(4,7), Player.white, b)
       b.pieces << king = King.new(Square.new(4,0), Player.black, b)
       b
+    when :kings_and_rooks_only
+      b = Game.new.board
+      b.pieces.clear
+      b.pieces << Rook.new(Square.new(0,7), Player.white, b)
+      b.pieces << Rook.new(Square.new(7,7), Player.white, b)
+      b.pieces << Rook.new(Square.new(0,0), Player.black, b)
+      b.pieces << Rook.new(Square.new(7,0), Player.black, b)
+      b.pieces << king = King.new(Square.new(4,7), Player.white, b)
+      b.pieces << king = King.new(Square.new(4,0), Player.black, b)
+      b
     end
   end
 end
