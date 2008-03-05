@@ -75,7 +75,7 @@ class BoardRenderer
         case key
         when 56: ydiff = -1
         when 50: ydiff = 1
-        when 52: xdif = -1
+        when 52: xdiff = -1
         when 54: xdiff = 1
         when 55: xdiff, ydiff = -1, -1
         when 57: xdiff, ydiff = 1, -1
