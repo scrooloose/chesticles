@@ -100,9 +100,10 @@ class BoardRenderer
     if @selected_square.nil?
       @selected_square = @current_square
     else
-      p = @board.piece_for(@selected_square)
-      m = Move.new(p, @current_square)
-      m.execute
+      begin
+        @board.piece_for(@selected_square).move_to(@current_square)
+      rescue Piece::IllegalMoveError
+      end
       @selected_square = nil
     end
   end
