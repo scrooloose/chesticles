@@ -7,6 +7,7 @@ class BoardRenderer
   def initialize(board)
     @board = board
     @current_square = Square.new(4, 6)
+    @messages = []
   end
 
   def render
@@ -38,6 +39,9 @@ class BoardRenderer
 
       output << "\n"
     end
+
+    output << @messages.join("\n")
+    @messages.clear
 
     system("clear")
     puts output
@@ -103,8 +107,14 @@ class BoardRenderer
       begin
         @board.piece_for(@selected_square).move_to(@current_square)
       rescue Piece::IllegalMoveError
+        message_for_user "Illegal move sunshine"
       end
       @selected_square = nil
     end
   end
+
+  def message_for_user(msg)
+    @messages << msg
+  end
+
 end
