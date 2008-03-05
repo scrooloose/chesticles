@@ -68,27 +68,26 @@ class BoardRenderer
       render
       key = get_character
 
-      case key
-      when 56
-        @current_square = Square.new(@current_square.x, @current_square.y - 1)
-      when 50
-        @current_square = Square.new(@current_square.x, @current_square.y + 1)
-      when 52
-        @current_square = Square.new(@current_square.x - 1, @current_square.y)
-      when 54
-        @current_square = Square.new(@current_square.x + 1, @current_square.y)
-
-      when 55
-        @current_square = Square.new(@current_square.x - 1, @current_square.y - 1)
-      when 57
-        @current_square = Square.new(@current_square.x + 1, @current_square.y - 1)
-      when 49
-        @current_square = Square.new(@current_square.x - 1, @current_square.y + 1)
-      when 51
-        @current_square = Square.new(@current_square.x + 1, @current_square.y + 1)
-
-      when 53
+      if key == 53
         square_selected
+      else
+        xdiff, ydiff = 0,0
+        case key
+        when 56: ydiff = -1
+        when 50: ydiff = 1
+        when 52: xdif = -1
+        when 54: xdiff = 1
+        when 55: xdiff, ydiff = -1, -1
+        when 57: xdiff, ydiff = 1, -1
+        when 49: xdiff, ydiff = -1, 1
+        when 51: xdiff, ydiff = 1, 1
+        end
+
+        begin
+          @current_square = Square.new(@current_square.x + xdiff, @current_square.y + ydiff)
+        rescue Square::InvalidCoordinateError
+          #trying to move the cursor off the board, do nothing 
+        end
       end
     end
   end
@@ -107,6 +106,4 @@ class BoardRenderer
       @selected_square = nil
     end
   end
-
-
 end
