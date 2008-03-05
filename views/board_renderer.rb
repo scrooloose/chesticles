@@ -102,7 +102,7 @@ class BoardRenderer
 
   def square_selected
     if @selected_square.nil?
-      @selected_square = @current_square
+      @selected_square = @current_square if @board.piece_for(@current_square)
     else
       begin
         @board.piece_for(@selected_square).move_to(@current_square)
