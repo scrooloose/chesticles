@@ -12,14 +12,14 @@ class Move
   end
 
   def checks_enemy?
-    enemy_king = board.pieces.find {|p| p.is_a?(King) && p.player != player}
+    enemy_king = board.king_for(player.enemy)
     piece.temporarily_move_to(square) do |p|
       board.threatened?(enemy_king.square, player) 
     end
   end
 
   def checks_self?
-    our_king = board.pieces.find {|p| p.is_a?(King) && p.player == player}
+    our_king = board.king_for(player)
     piece.temporarily_move_to(square) do |p|
       board.threatened?(our_king.square, player.enemy) 
     end
