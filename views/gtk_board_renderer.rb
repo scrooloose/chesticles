@@ -11,23 +11,31 @@ class GtkBoardRenderer < Gtk::Window
     @board = board
 
     set_default_size(SQUARE_WIDTH*8, SQUARE_WIDTH*8)
-    app_paintable = true
+
     signal_connect("expose-event") do |widget, event|
       gc = Gdk::GC.new(widget.window)
       render(gc, widget.window)
     end
+
     signal_connect('button_press_event') do |widget, event|
       x = (event.x / SQUARE_WIDTH).floor
       y = (event.y / SQUARE_WIDTH).floor
       s = Square.new(x,y)
       square_clicked(s)
     end
-
     add_events(Gdk::Event::BUTTON_PRESS_MASK)
 
-
+    setup_colors
     show_all.signal_connect("destroy"){Gtk.main_quit}
     Gtk.main
+  end
+
+  def setup_colors
+    @white = Gdk::Color.new(65535, 65535, 65535)
+    @black = Gdk::Color.new(40000, 40000, 40000)
+    colormap = Gdk::Colormap.system
+    colormap.alloc_color(@white, false, true)
+    colormap.alloc_color(@black, false, true)
   end
 
   def render(gc, drawable)
@@ -35,17 +43,12 @@ class GtkBoardRenderer < Gtk::Window
   end
 
   def draw_board(gc, drawable)
-    white   = Gdk::Color.new(65535, 65535, 65535)
-    black = Gdk::Color.new(40000, 40000, 40000)
-    colormap = Gdk::Colormap.system
-    colormap.alloc_color(white,   false, true)
-    colormap.alloc_color(black, false, true)
 
     0.upto(7) do |x|
       0.upto(7) do |y|
         s = Square.new(x,y)
 
-        color = s.black? ? black : white
+        color = s.black? ? @black : @white
         gc.set_foreground(color)
 
 
