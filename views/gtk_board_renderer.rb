@@ -23,6 +23,7 @@ class GtkBoardRenderer < Gtk::Window
       s = Square.new(x,y)
       square_clicked(s)
     end
+
     add_events(Gdk::Event::BUTTON_PRESS_MASK)
 
     setup_colors
@@ -33,9 +34,11 @@ class GtkBoardRenderer < Gtk::Window
   def setup_colors
     @white = Gdk::Color.new(65535, 65535, 65535)
     @black = Gdk::Color.new(40000, 40000, 40000)
+    @selected_square_color = Gdk::Color.parse("orange")
     colormap = Gdk::Colormap.system
     colormap.alloc_color(@white, false, true)
     colormap.alloc_color(@black, false, true)
+    colormap.alloc_color(@selected_square_color, false, true)
   end
 
   def render(gc, drawable)
@@ -48,7 +51,13 @@ class GtkBoardRenderer < Gtk::Window
       0.upto(7) do |y|
         s = Square.new(x,y)
 
-        color = s.black? ? @black : @white
+        color = if @selected_square && s == @selected_square
+          @selected_square_color
+        elsif s.black?
+          @black
+        else
+          @white
+        end
         gc.set_foreground(color)
 
 
@@ -65,6 +74,7 @@ class GtkBoardRenderer < Gtk::Window
   def square_clicked(square)
     if @selected_square.nil?
       @selected_square = square if @board.piece_for(square)
+      queue_draw
     else
       begin
         @board.piece_for(@selected_square).move_to(square)
