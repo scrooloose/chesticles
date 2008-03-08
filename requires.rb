@@ -18,3 +18,4 @@ require 'models/king.rb'
 require 'models/bishop.rb'
 
 require 'views/board_renderer.rb'
+require 'views/gtk_board_renderer.rb'
