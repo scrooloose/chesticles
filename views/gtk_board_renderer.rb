@@ -82,7 +82,7 @@ class GtkBoardRenderer < Gtk::Window
       when Queen: "queen.gif"
       when Knight: "knight.gif"
       when Rook: "rook.gif"
-      when Bishop: "king.gif"
+      when Bishop: "bishop.gif"
       when Pawn: "pawn.gif"
     end
     color = piece.white? ? "white" : "black"
