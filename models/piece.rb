@@ -40,11 +40,7 @@ class Piece
   end
 
   def legal?(move)
-    return false unless this_players_turn?
-    return false if move.checks_self?
-    return false if move.moving_to_same_square?
-    return false if move.trying_to_capture_own_piece?
-    legal_move?(move) 
+    passes_basic_checks?(move) && legal_move?(move) 
   end
 
   def threatening?(square)
@@ -74,4 +70,13 @@ class Piece
   def legal_move?(move)
     raise(NotImplementedError, "legal_move? not implemented for #{self.class.name}")
   end
+
+  def passes_basic_checks?(move)
+    return false unless this_players_turn?
+    return false if move.checks_self?
+    return false if move.moving_to_same_square?
+    return false if move.trying_to_capture_own_piece?
+    true
+  end
+
 end

@@ -14,4 +14,11 @@ describe Pawn do
     m.execute
     m.board.piece_for(m.square).should be_an_instance_of(Queen)
   end
+
+  it "should be threatening the squaures diagonally infront of it" do
+    b = boards(:start)
+    pawn = b.piece_for(Square.new(4,6))
+    pawn.threatening?(Square.new(3,5)).should be
+    pawn.threatening?(Square.new(5,5)).should be
+  end
 end

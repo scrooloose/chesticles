@@ -9,7 +9,7 @@ class Pawn < Piece
 
   def threatening?(square)
     m = Move.new(self, square)
-    legal?(m) && (m.direction?(:forward_left, 1) || m.direction?(:forward_right, 1))
+    passes_basic_checks?(m) && (m.direction?(:forward_left, 1) || m.direction?(:forward_right, 1))
   rescue Move::InvalidDestinationSquareError
     false
   end
