@@ -16,6 +16,3 @@ require 'models/knight'
 require 'models/queen'
 require 'models/king'
 require 'models/bishop'
-
-require 'views/board_renderer'
-require 'views/gtk_board_renderer'
