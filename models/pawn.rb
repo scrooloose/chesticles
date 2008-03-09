@@ -1,6 +1,10 @@
 class Pawn < Piece
   def move(move)
     super(move)
+    if move.moving_to_end_of_board?
+      board.pieces.delete(self)
+      board.pieces << Queen.new(square, player, board)
+    end
   end
 
   def threatening?(square)
