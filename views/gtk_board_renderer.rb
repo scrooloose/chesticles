@@ -85,16 +85,8 @@ class GtkBoardRenderer < Gtk::Window
     end
   end
 
-
   def pixbuf_for(piece)
-    image_file = case piece
-      when King: "king.gif"
-      when Queen: "queen.gif"
-      when Knight: "knight.gif"
-      when Rook: "rook.gif"
-      when Bishop: "bishop.gif"
-      when Pawn: "pawn.gif"
-    end
+    image_file = piece.class.to_s.downcase + ".gif"
     color = piece.white? ? "white" : "black"
     pix_buf = Gdk::Pixbuf.new("data/piece_images/#{color}/#{image_file}")
   end
