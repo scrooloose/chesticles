@@ -3,6 +3,11 @@
 require 'requires'
 
 game = Game.new
-#br = BoardRenderer.new(game.board)
-#br.main_loop
-br = GtkBoardRenderer.new(game.board)
+if ARGV.include? "--use-gtk"
+  br = GtkBoardRenderer.new(game.board)
+else
+  br = BoardRenderer.new(game.board)
+  br.main_loop
+end
+
+
