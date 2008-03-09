@@ -85,4 +85,14 @@ describe Move do
     b.king_for(Player.white).move_for(Square.new(6,7)).castle?.should be
   end
 
+  it "should return true for #moving_to_end_of_board? when black moves to the end" do
+    m = moves(:black_gets_new_queen)
+    m.moving_to_end_of_board?.should be
+  end
+
+  it "should return true for #moving_to_end_of_board? when white moves to the end" do
+    m = moves(:white_gets_new_queen)
+    m.moving_to_end_of_board?.should be
+  end
+
 end

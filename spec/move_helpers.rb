@@ -21,6 +21,21 @@ module MoveHelpers
       b.pieces << black_rook
 
       white_rook.move_for(Square.new(5,6))
+    when :white_gets_new_queen
+      b = Game.new.board
+      b.pieces.clear
+      b.pieces << King.new(Square.new(4,7), Player.white, b)
+      b.pieces << King.new(Square.new(0,7), Player.black, b)
+      b.pieces << pawn = Pawn.new(Square.new(0,1), Player.white, b)
+      pawn.move_for(Square.new(0,0))
+    when :black_gets_new_queen
+      b = Game.new.board
+      b.pieces.clear
+      b.pieces << King.new(Square.new(4,7), Player.white, b)
+      b.pieces << King.new(Square.new(0,7), Player.black, b)
+      b.pieces << pawn = Pawn.new(Square.new(0,6), Player.black, b)
+      pawn.move_for(Square.new(0,7))
     end
+
   end
 end

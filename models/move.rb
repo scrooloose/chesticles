@@ -174,4 +174,9 @@ class Move
     rook.is_a?(Rook) && !rook.moved?
   end
 
+  def moving_to_end_of_board?
+    square.y == 0 && player.white? || square.y == 7 && player.black?
+  end
+
+
 end
