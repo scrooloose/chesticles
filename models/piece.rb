@@ -51,9 +51,11 @@ class Piece
 
   def temporarily_move_to(square, &block)
     old_square = @square 
+    old_piece = board.pieces.delete(board.piece_for(square))
     @square = square
     to_return = block.call(self)
     @square = old_square
+    board.pieces << old_piece if old_piece
     to_return
   end
 
