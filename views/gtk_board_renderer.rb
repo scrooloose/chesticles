@@ -74,15 +74,14 @@ class GtkBoardRenderer < Gtk::Window
   def square_clicked(square)
     if @selected_square.nil?
       @selected_square = square if @board.piece_for(square)
-      queue_draw
     else
       begin
         @board.piece_for(@selected_square).move_to(square)
-        queue_draw
       rescue Piece::IllegalMoveError
       end
       @selected_square = nil
     end
+    queue_draw
   end
 
   def pixbuf_for(piece)
