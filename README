@@ -1,0 +1,15 @@
+Requirements
+================================================================================
+
+* the highline gem
+* the gtk2 ruby library if you intend to use the gtk interface 
+
+
+Playing
+================================================================================
+
+./chess --use-gtk
+will start the game with the gtk2 interface
+
+./chess 
+will start the game with the ascii interface (reduced sex appeal)
