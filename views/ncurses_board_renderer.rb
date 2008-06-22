@@ -5,6 +5,18 @@ class NcursesBoardRenderer
 
   attr_reader :board
 
+  @@colors = {
+    :black_square => 1,
+    :white_square => 2,
+    :selected_square => 3,
+    :messages => 4
+  }
+  def color_pair_for(color_name)
+    Ncurses.COLOR_PAIR(@@colors[color_name.to_sym])
+  end
+
+
+
   def initialize(board)
     @board = board
     @current_square = Square.new(4, 6)
@@ -19,9 +31,9 @@ class NcursesBoardRenderer
         piece = piece = @board.piece_for(square)
 
         color = if @current_square == square || (@selected_square && @selected_square == square)
-          Ncurses.COLOR_PAIR(3)
+          color_pair_for(:selected_square)
         else
-          square.black? ? Ncurses.COLOR_PAIR(1) : Ncurses.COLOR_PAIR(2)
+          square.black? ? color_pair_for(:black_square) : color_pair_for(:white_square)
         end
 
         str_to_render = piece ?  " #{char_for(piece)} " : "   "
@@ -32,11 +44,11 @@ class NcursesBoardRenderer
       end
     end
 
-    @win.attron(Ncurses.COLOR_PAIR(4))
+    @win.attron(color_pair_for(:messages))
     @messages.each_with_index do |message,i|
         Ncurses.mvaddstr(9+i, 0, message)
     end
-    @win.attroff(Ncurses.COLOR_PAIR(4))
+    @win.attroff(color_pair_for(:messages))
     @messages.clear
 
     Ncurses.refresh
@@ -68,10 +80,10 @@ class NcursesBoardRenderer
     Ncurses.nl
     Ncurses.curs_set(0)
     Ncurses.start_color
-    Ncurses.init_pair(1, Ncurses::COLOR_WHITE, Ncurses::COLOR_RED);
-    Ncurses.init_pair(2, Ncurses::COLOR_WHITE, Ncurses::COLOR_YELLOW);
-    Ncurses.init_pair(3, Ncurses::COLOR_WHITE, Ncurses::COLOR_BLUE);
-    Ncurses.init_pair(4, Ncurses::COLOR_WHITE, Ncurses::COLOR_BLACK);
+    Ncurses.init_pair(@@colors[:white_square],    Ncurses::COLOR_WHITE, Ncurses::COLOR_RED);
+    Ncurses.init_pair(@@colors[:black_square],    Ncurses::COLOR_WHITE, Ncurses::COLOR_YELLOW);
+    Ncurses.init_pair(@@colors[:selected_square], Ncurses::COLOR_WHITE, Ncurses::COLOR_BLUE);
+    Ncurses.init_pair(@@colors[:messages],        Ncurses::COLOR_WHITE, Ncurses::COLOR_BLACK);
 
     while !@done
       render
