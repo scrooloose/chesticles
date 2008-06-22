@@ -106,6 +106,7 @@ class NcursesBoardRenderer
         when 57: xdiff, ydiff = 1, -1
         when 49: xdiff, ydiff = -1, 1
         when 51: xdiff, ydiff = 1, 1
+        when 'q'[0]: kill_main_loop
         end
 
         begin
