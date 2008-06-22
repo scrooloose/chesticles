@@ -70,4 +70,19 @@ class Board
     pieces.find {|p| p.is_a?(King) && p.player == player}
   end
 
+  def checkmate_for?(player)
+    k = king_for(player)
+    if threatened?(k.square, player.enemy)
+      s = k.square
+      return false if k.legal?(k.move_for(Square.new(s.x+1, s.y  ))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x-1, s.y  ))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x,   s.y+1))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x,   s.y-1))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x+1, s.y+1))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x+1, s.y-1))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x-1, s.y+1))) rescue Square::InvalidCoordinateError
+      return false if k.legal?(k.move_for(Square.new(s.x-1, s.y-1))) rescue Square::InvalidCoordinateError
+      true
+    end
+  end
 end
