@@ -44,6 +44,10 @@ class NcursesBoardRenderer
       end
     end
 
+    if @board.checkmate_for?(@board.game.current_player)
+      message_for_user "ZOMG CHECKMATE!"
+    end
+
     @win.attron(color_pair_for(:messages))
     @messages.each_with_index do |message,i|
         Ncurses.mvaddstr(9+i, 0, message)
